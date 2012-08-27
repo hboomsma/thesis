@@ -1,0 +1,167 @@
+\clearpage
+\section{Dead Code Identification}
+
+In this section we look at how long we have to wait until we can use the results of the dynamic analysis. Therefore a case study has been done. The overhead measurements in the previous section are gathered from this use case. For about three months 6~Hostnet applications are analysed. The applications differ in age, the number of users that uses them and  the complexity in number of features they possess. In \autoref{tbl:ages} the applications used for the case study are shown. The number of users and features are relative to the other applications. We present the idea that small applications with a lot of unique users will offer certain results faster then a big application with little features. Further we check if the older applications within Hostnet have more dead code than the recently developed ones.
+
+For every application a short introduction about the use of the application in the organization will be given together with a graph that visualizes the number of files used by the application over time. When this graph stabilizes it means that the probability that new files will be included decreases. The graph shows the number of files in the application accessed over time. The last data point in the graph denotes the end of the measurement and not a new file that is included.
+
+All Hostnet applications are build as web applications, written in PHP. All tested applications make use of the \furl{symfony} framework and are connected to a \furl{mysql} Relational Database Cluster. Using Symfony also implies using the auto load functionality the framework offers. This makes all applications suitable for this analysis. The use of MySQL or Symfony is not needed for the implemented identification method to work, only the dynamic loading of files is.
+
+\subsection*{Applications in the use case}
+In \autoref{tbl:ages} the 6~applications that will be used in the use case are shown. The applications are developed in the past 6 years and all written in PHP. There are 4~applications, Aurora, My Hostnet, the Web shop and Mailbase that are accessed by humans, the other two, HFT2 and HFT3 are provisioning system that run (mostly) without user interaction. From the 4~web applications Aurora and Mailbase are only for internal use within Hostnet. The Web shop and My Hostnet are accessed by customers. The value of page requests for Aurora in the table has been adjusted to take the number of automated request from some monitoring systems into account. These systems are responsible for almost half of the requests but always request the same page. An example is the TV which shows real-time data about which customers are currently in the web shop.
+
+\begin{table}[b]
+	\small
+	\centering
+	\begin{tabular}{|l|l|l|l|c|r|}
+	\hline
+	Name & Description & \# files & Age & \# page requests / day\\
+	\hline
+	HFT3        & New provision system        & \HftThreestrippedFileCount & 1 year  & n.a.    \\
+	Web shop    & web shop                    & \OntrackFileCount          & 3 years & 39,643  \\
+	Aurora      & CRM application             & \AuroraFileCount           & 5 years & 60,383  \\
+	Mailbase    & Lagacy mail filter frontend & \MailbaseFileCount         & 5 years & 2,803   \\
+	My Hostnet  & Customer portal             & \MyTwoFileCount            & 5 years & 53,495  \\
+	HFT2        & Provisioning system         & \HftTwoFileCount           & 6 years & n.a.    \\
+	\hline
+	\end{tabular}
+	\caption{Applications ordered according to age	\label{tbl:ages}}
+\end{table}
+
+
+
+%\addtocounter{footnote}{-1}
+%\footnotetext{HFT3 included a plugin for the \orm which is available through the Symfony framework for the other applications, this plugin is not taken into account here.}
+%\addtocounter{footnote}{1}
+
+\newcommand{\hftTwoFootnote}{HFT2 uses static includes in the legacy part of the application which is not supported. Static included files always report as alive, increasing the percentage of used files significantly. Not all files are included statically so the method is still usable to identify dead code and eliminate it but comparison to the other applications does not make much sense.
+}
+%\footnotetext{\hftTwoFootnote}
+
+
+
+\subsection*{Aurora}
+Aurora is the biggest (in files) and most feature rich application developed at Hostnet. It is used to store all customer information. Everything from contact information, bought products, contracts and invoices. Aurora takes care of a lot of the periodic tasks like creating invoices\cite{boomsma2008}. Aurora also offers all kind of statistics and development tools for the Software Engineering department. Aurora is used for daily business by the majority of employees, most work consists of looking up customer data, like contracts, contact data and products. All the advanced function are only used once in a while.
+
+The server has to take care of about 4 visits per second on average. This is because all helpdesk employees use Aurora for almost all their tasks and some TVs which show real-time statistics via Aurora.
+
+Aurora is build up in clearly distinctive modules, batch jobs, database models, plug-ins and templates.
+When looking at the. All modules that are not changed recently are probably dead. Before removing a module it is needed to know what it is used for and if it was already expected to be used or not. If it was not expected to be used it can be removed. This shows that selecting files for removal requires human reasoning.
+
+\bottomimage[1\textwidth]{usecase/aurora_saturation}{Number of used files over time in Aurora}{fig:aurora_saturation}
+
+When looking at the graph for the application in \autoref{fig:aurora_saturation} we can see it rises quickly and then keeps growing steadily, the slope of the graph never reaches 0. At the end of January an increase in the number of files is visible, here a new version is deployed and a cache rebuild took place. The cache rebuild used a lot of new files in the database model of Aurora. That the graph is increasing unit now means that new features are still being accessed every day even after 3 month time. For Aurora as a whole it is very likely that new files will be used in the future, however sub modules may be stable in less time. 
+
+Because in Aurora as a whole new files are being accessed every day, it is not possible to draw a general conclusion for the whole application other than that it is not yet possible to start with dead file removal other than for clearly separated parts like modules that only contain dead files or core functionality which is frequently since the start of the analysis.
+
+The first moment when the data becomes useful is at the point the slope decreases substantially and the graph bends. In the graph of Aurora this point is visible at the 14th of January. From this point all base functionality has been accessed. Aurora has a lot of monthly jobs, so we should at leas wait a full month until we start using the data. After this time we can start with the dead code removal. The graph should not shows sudden increases in the number of used files any more at this time, if it does there might be something wrong with the estimation of the frequency wherein features are used.
+
+If we would look at the graph and make an educated guess about the asymptote it will approach of about 5000 just to be on the safe side, we could calculate the probability of deleting a file that will be used in the future (when randomly choosing one). 9755 total files - 5000 alive files = 4755 dead files. 4983 files are not used yet. 4984 unused files - 4755 dead files = 229 alive files not accessed yet. 229 dead files not accessed yet / 4983 files not used yet = 0.046. This gives a change of 4.6\% that a file would be removed that was not dead when random selecting a file. These numbers are not included in the visualization because they are based on a educated guess of where the asymptote would be. Building a model to predict the probability of removing alive files at a given point in time is left as future work.
+
+\subsection*{My Hostnet}
+
+My Hostnet is the customer portal of Hostnet. When somebody owns a domain name, virtual private server or hosting they can login to My Hostnet to view their address data, invoices, products and so on. It is also possible to change settings for products, upgrade products, pay invoicess or cancel contracts.
+\\
+\hereimage[1\textwidth]{usecase/my2_saturation}{Number of used files over time in My Hostnet}{fig:my2_saturation}
+
+
+My Hostnet has a lot more different users than Aurora and far less features. The graph in \autoref{fig:my2_saturation} shows a quick rise over just several days and then the slope is 0 for more than a month, then a couple of new files is included because a very rarely used feature has been accessed (in this case an error page that was resurrected for use in a new feature). Although new files may always be used in the future, the dead file identification in My Hostnet stabilizes after about 7~days. Then it is reasonable safe to remove the dead files according to the described dead code elimination procedure. We can conclude that we can start measuring after 14 days. All features of My Hostnet are expected to be used at least once a week. With the exception for error pages. The 7~days needed to stabilize is taken form the graph based on the fact that no new files were accessed afterwards for several months. When using the same method as for Aurora to calculate the probability as we did for Aurora the probability of removing an alive file when random selecting one approaches 0.
+
+
+\subsection*{Web shop}
+
+The web shop has a high number of page requests and a relatively low number of files (see \autoref{tbl:ages}, although the web shop is highly dynamic and can generate different versions of the web shop based on where the customer came from. Because not all features of the web shop will be activated at all times and there are some very specific feature for rarely sold products, it is to be expected that the web shop will stabilize faster than Aurora but slower than My Hostnet.
+
+When looking at the graph in \autoref{fig:ontrack_saturation} we see that after 30 days still some new files where used. But we can also see is increasingly more time between new files being included. We can also see that the graph became stable after half February. Around 20 February the slope of the graph already was 0 but this was only for a few days. The distance between the point should be bigger than the expected frequency of the features of the application. For the web shop we know that some products are sold only once per month. It is possible, however, to start dead code elimination at this point as long as we keep in mind that all files related to products, especially the ones sold less often, could still be needed.
+\hereimage[1\textwidth]{usecase/ontrack_saturation}{Number of used files over time in the web shop}{fig:ontrack_saturation}
+
+When looking into the measurements concerning the web shop we can see that a lot of code that is identified as dead code actually belongs to deactivated features in the order module. When new features will be activated they will only show up in the graph if the files were already deployed on the production server at the time the files were first indexed. Once again we see that dead code identification on the scale of files needs human reasoning. Here we can also see that when an increase is seen in the graph it may be worth investigating where it came from, because if it was caused by enabling a feature we can still consider the graph stable. In the future automatic notification of such events could be implemented.
+
+\subsection*{HFT2}
+HFT stands for Hostnet Full Throttle and is the provisioning system used to order all domains and deliver them to the customers, the HFT2 also sets up hosting accounts and mails all needed information to the owner. There are a lot of products that can be delivered through the HFT2. 
+
+The HFT2 is the oldest application under inspection and is not yet (and never will be) fully converted into a Symfony application. This explains the low percentage of dead files; the unconverted part of the HFT2 uses static inclusion of the needed resources. This marks all included files as alive, not telling if they are actually in use.
+
+
+\hereimage[1\textwidth]{usecase/hft2_saturation}{Number of used files over time in HFT2}{fig:hft2_saturation}
+
+As a consequence, the applied method only works well on the Symfony part (116 dead files). This, by no means, render the method useless for the other part. Because the application is fairly aged a lot of old files that are never included can be found in the legacy part (935 dead files). The plots also show that not all inclusions are static in the old part of the application because new files are included over time.
+
+When we look at the graph in \autoref{fig:hft2_saturation} we can see that the slope approaches zero around 28th of January but that still some new files are accessed later on. These files are visible as the crosses in the line. The last cross only denotes the end of the analysis. However if we would look at the Symfony part of the application we can see that no new files were included within a month. The files that were included in the old part of the application later on, are some specific products and the logout feature in the interface. This shows that we have to be carefull when removing code that is related to products that are not regularly sold. The logout function that is used after some time shows that some features are seldom used. For seldom used features it is questionable if we should keep them. It is arguable that a feature that is only accessed once in the three months should be removed because it costs more time than performing the task by hand.
+
+From the employees of Hostnet we know that a part of the HFT2 is transformed into Symfony and a old legacy part is still there. In the visualization the legacy part of the application might be recognizable by the fact that most of the files have not changes for 6 years. The fact that there is a folder called Symfony in which all files are more recently added would confirm this.
+
+\subsection*{HFT3}
+HFT3 is the successor of HFT2 and uses a new database model which is put in a shared repository. At this time HFT3 is the major application using the new database model but in the future more applications will be using it. Action should be taken log and accumulate data for shared code in a separate dataset which is used by all applications which make use of that code to see which code is in use. Libraries could also be analysed in the same way. At this moment we have to hard code different locations to store usage data in the dynamic analysis. It could be possible to automatically generate the location bases on  \vcs data in the future.
+
+HFT3 is a lot smaller (in files) that HFT2 but it is used just as much. The work rounds in which HFT3 fetches data and execute it's tasks are  a lot shorter than in the previous version. 
+
+Allmost all dead files can be tracked down to the database. 807 dead files are located in an \orm plug-in. This plug-in is not included in the other projects because it is bundled with symfony, but the HFT3 uses a newer version so it is included. The percentage of dead files when not taking this plug-in into account drops from  65\% to 40\%. This percentage is more in line with the measured values in the other applications and shows that newer applications probably have less dead code.
+
+\hereimage[1\textwidth]{usecase/hft3_saturation}{Number of used files over time in HFT3}{fig:hft3_saturation}
+When we look at the graph for the HFT3 in \autoref{fig:hft3_saturation} we can see that over time new files are still being accessed. When we look further into the HFT we can see that some of the new files belong to an \orm plug-in (which should be outside of the project). The only new file accessed that does not belong to the \orm plug-in contains an Exception class which was used after one month. This leads to the conclusion that the HFT3 has to be measured for about one month to get sufficient certainty.
+
+\subsection*{Mailbase}
+
+Mailbase is is used to view and search all email that is send to and received from customers as well as  mail to domain registrars. Only the user interface is under inspection. Mailbase is almost never used. The code is written using the Symfony framework and is the smallest (in number of files) of the tested applications. 
+
+\hereimage[1\textwidth]{usecase/mailbase_saturation}{Number of used files over time in Mailbase}{fig:mailbase_saturation}
+
+Because Mailbase is used very little it is hard to know when new features will stop showing up. In the graph in \autoref{fig:mailbase_saturation} we can see that the distance between new files being included does not lengthen yet, so there is no indication to assume the graph is stabilizing. This means we can not use the data for maintenance purposes as we can for the other applications.
+
+At Hostnet only one person is still using Mailbase. Everything that he does not use will be removed from Mailbase and the functionality that remains will be ported to Aurora. In this case the only way to get accurate data is to ask the one person sill using the application. An option is to just port only the functionality used in the past 3 month and add all other functionality only on request with the old Mailbase code in the \vcs as reference. This shows that depending on the goal it is possible to use the dead code identification method even when an application is used by only one user.
+
+
+\subsection*{Results of the case study}
+
+Now we got data for all applications we can compare them and see if the applications behave as we thought within Hostnet. First we look at the age of the applications. We expected older applications to have a lower percentage of used code than the more recent ones. 
+
+If we order the applications according to their age, and we compare that with the ranking according ranking according to the percentage of unused files, then we observe that
+
+ \autoref{tbl:used}. In \autoref{fig:all_apps} the graphs that were used to determine when to start with dead code elimination for every application in the use case are combined into one figure. In this figure the x-axis still denotes the time but it is given in days instead of dates, because not all use cases were started at the same time and thus they would start at different dates making it harder to compare them. This is also the reason for the fact that not all lines in the graph end at the same position. The y-axis uses a percentage instead of the number of files so it is possible to compare the applications in this graph according to percentage of used code. This figure shows that, in general, no conclusion can be drawn on how long you have to wait before starting dead code elimination.
+ 
+When looking at \autoref{tbl:used} we see that the HFT2 does contain less unused code than the other applications even though it is the oldest one. This is because a big part of the HFT2 is statically included and denoted alive even if it would not be used at all. The HFT2 also has a newer part of the application which uses dynamic inclusion. This part shown as the HFT2 (Symfony) entry in the table. We also notice that the HFT3 uses less of its code then the web shop does despite of it being younger. This can be explained the fact HFT3 contains relatively much shared and generated code. The shared code can be found in the model of the HFT3 which also contains classes for a new mass mailer system.
+ 
+In general we can say that older applications tend to have more dead code within Hostnet. We also see that code reuse is an important source of dead code in the Hostnet applications. Dead code is found in plug-ins for all application.
+
+The second prediction, that small applications and much used application  will reach a stable analysis faster than little used complex ones. We look at \autoref{tbl:time} to see if this is the case for the applications at Hostnet. The division of the number of files by the number of page views per day is taken to compare it to the time needed to stabilize we found in de case study. We see that the prediction is only partly confirmed. The web shop took longer than was to be expected based solely on the number of features and users. We see that it is important to know what type of features an application posses. For example in the web shop some rarely sold products are available that require extra information from the client. The files needed for those products are expected to be only used once a month. This demonstrates that a rough estimation can be made on the number of files and users but that for a better estimation it is needed to know when the application features are expected to be used. We can also see that for Hostnet the time we had to wait to be certain ranges from 1 week to (at least) over 3 month. It is possible to already eliminate dead code from stable parts of the system. In the use case on dead code elimination (next section) we successfully removed dead files from Aurora where new files are accessed every day.
+
+\begin{table}[p]
+	\small
+	\centering
+	\begin{tabular}{|l|l|l|l|l|c|c|}
+	\hline
+	Name & Description & Age & \% used\\
+	\hline
+	HFT3    		         & New provision system         & 1 year  & \HftThreestrippedPctAlive\% \\
+	Web shop             & web shop                     & 3 years & \OntrackPctAlive\%          \\
+	HFT2 (Symfony)       & Provisioning system          & 3 years & 50.64\%                     \\
+	Aurora               & CRM application              & 5 years & \AuroraPctAlive\%           \\
+	Mailbase             & Lagacy mail filter frontend  & 5 years & \MailbasePctAlive\%         \\
+	My Hostnet           & Customer portal              & 5 years & \MyTwoPctAlive\%            \\
+	HFT2\footnotemark    & Provisioning system          & 6 years & \HftTwoPctAlive\%           \\
+	\hline
+	\end{tabular}
+	\caption{Applications ordered according to age with percentage of used files\label{tbl:used}}
+\end{table}
+
+\begin{table}[p]
+	\small
+	\centering
+	\begin{tabular}{|l|r|r|r|l|}
+	\hline	 
+	 Name        & page views $/$ day & \# files & $\text{\# files}/\text{\# page views}$  & no new files accessed after\\
+	\hline
+	My Hostnet & 53,495 & \MyTwoFileCount            &  0.045 & 1 week\\
+	HFT3       & n.a.   & \HftThreestrippedFileCount &   n.a. & 1 month\\
+	Web shop   & 39,643 & \OntrackFileCount          &  0.023 & 1 month\\
+	HFT2       & n.a.   & \HftTwoFileCount           &   n.a. & 2 months\\
+	Aurora     & 60,383 & \AuroraFileCount           & 0.161 & Not yet\\
+	Mailbase   &  2,803 & \MailbaseFileCount         & 0.171 & uncertain\\
+	\hline 
+	\end{tabular}
+	\caption{Time to wait before now new files are accessed any more per application\label{tbl:time}}
+\end{table}
+\footnotetext{\hftTwoFootnote}
+
+\pageimage{usecase/all}{Ratio of used files per application}{fig:all_apps}

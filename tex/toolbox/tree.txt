@@ -1,0 +1,9 @@
+puts aggregated data in the database
+
+Usage:
+  /usr/bin/dead [options] tree [options]
+
+Options:
+  -t table, --table=table  Table where the aggregated data should be saved
+  -h, --help               show this help message and exit
+

@@ -1,0 +1,12 @@
+generate a colors.txt file for use in eclipse
+
+Usage:
+  /usr/bin/dead [options] color [options]
+
+Options:
+  -p workspace, --workspace_path=workspace  Cut off this string from the
+                                            path generated for colors.txt
+                                            to match your workspace
+                                            checkout
+  -h, --help                                show this help message and exit
+

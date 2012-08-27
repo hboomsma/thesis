@@ -1,0 +1,37 @@
+\chapter{Summary, conclusions and future work\label{ch:conclusions}\label{ch:future}}
+
+The goal of this thesis is to remove dead code (see chapter \ref{sec:dead}). The reason that we want to remove dead code is because it makes software harder to maintain, slower to run, slower to handle and more prone to bugs\cite{chen1998,godfrey2000,huang2003,kiewkanya2005,scanniello2011}. However elimination of dead code needs a huge effort to recover and eliminate unused and dead code\cite{andreopoulos2004,jones2006,scanniello2011}. This research was done to make identifying and eliminating dead code need less effort.
+
+The main goal was to solve the problem "How to identify and eliminate dead code from web applications written in PHP". The method described in this thesis does that by dynamic analysis of the application at hand. The choice for dynamic analysis is made because it has the abillity to detect unused code and the fact that static analysis is very hard to implement for dynamic languages\cite{biggar2009,biggar2009draft,biggar2010,devries2007,tratt2009}. 
+
+In the introduction (see chapter \ref{sec:problem}) 5 research questions were asked, what to measure, how to measure, what is the overhead, where and when do we measure and when can we remove code. These questions are answered by this thesis and are discussed in short below.
+
+\subsection*{What to measure}
+The granularity of measurement chosen for the dead code identification is at the level of classes. In practice this translates to which files are included (for PHP applications that use the auto loading functionality). For every request the included files are aggregated with the already used files, giving an overview of all used files in the system since the start of the measurement. When this set is subtracted from the set with all PHP files in the application the result is the set of (probably) dead files. See also chapter \ref{sec:alive}. Chosen is to use a top down approach, first take the class as unit of work and make the granularity more fine grained until it is not worth the effort any more. 
+
+\subsection*{How do we measure this}
+PHP offers functionality to append code to every execution of PHP. With this method after every request a list of all included files is sent to the central repository. This method is also applicable to other languages possessing dynamic class loading functionality like Java.
+
+\subsection*{What is the overhead}
+The overhead is about 10 ms per execution in the environment tested at Hostnet, on other hardware and for other applications this could differ. The overhead is of $O(n)$ because the amount of file names to be transferred increases with the number of files accessed. Note that very lengthy requests do not necessarily mean that much files are included.  The storage in the relational database uses an hashmap (also $O(n)$). In practice the absolute overhead seems fairly consistent around the 8 ms. The relative overhead is an other story, it varies wildly depending on how long the script takes to execute. For scripts without an database connection the overhead can be over 50\% but for scripts but for a heavy page or batch job the overhead could be less than 1 \permil. See also \ref{sec:overhead}
+
+\subsection*{Where and when do we measure it}
+The measuring takes place at production time. In other words when the application is in use by the end users. The measuring is done at all servers at all time. This way it is less probably that we miss out rarely used features. Because of the design of most modern PHP applications it is not very well possible to disable the measuring for parts of the application without advanced techniques. It could be possible to implement such a scheme using a white or blacklist of files to measure, but the lookup on this list could very well be more expensive than just sending all data to the database server. Very fast solutions could use some form of shared memory. This is not done for this thesis because it was quick enough for use in a business environment. Also see chapter \ref{sec:alive}. This thesis contributes to the knowledge about dead code removal by using dynamic analysis instead of static analysis as is common when detecting dead code. The use of dynamic analysis is more suitable for a dynamic language like PHP but also enables us to detect unused features.
+
+\subsection*{When can we remove code}
+Elimination of the code at the scale of files in a dynamic language still is a humans job. Some files are just not used yet because they are for a newly developed feature. This can be detected by using \vcs information besides the usage information. But some features or batch jobs are just not used that much. Some even less than annually. See also \autoref{ch:elimination} about dead code elimination and \autoref{ch:evaluation} with the use cases. In the evaluation we saw that big and complex applications need to be analysed for a longer period than small or heavily used ones. From the use case follows that code elimination was possible within 3 month for all applications within Hostnet even if it was still likely that new files would be accessed in the future. For the customer portal it only took a week until no new files were accessed any more.
+
+\subsection*{Contributions}
+This thesis contributes to the knowledge about dynamically determining unused code in dynamic languages. The concept of coverage analysis is used to acquire the data which is than aggregated over the file tree to give a structured view about the usage of the application. Also the steps towards combining more data sources in the same visualization are made. For this thesis also \vcs data is included but in the future also static analysis date and maybe even more data sources can be added. This research shows that the ideas presented are useful for use in a business environment and do not get in the way of the developer or end user.
+
+Besides the knowledge the toolbox and visualizations created are made open source at github\furl*{hostnetos} under the \furl{epl}. Everybody is free to use and change the code, repackage and sell it, but the author should get the changes and improvements made.
+
+\subsection*{Future work}
+
+%dynamic dead funcion detection
+%try outside of Hostnet
+%
+
+The toolbox, visualizations and dead code elimination procedure are thus far only used and testet within Hostnet. Future research should be conducted to find out how well the work done in this thesis is usable in other companies and projects.
+
+As enhancement for the current analysis I would like to research the possibility of dead method identification. With a lower granularity it is possible to remove more dead code and dead methods create a unnecessary complex view when looking at an application which will prolong development time and could lead to bugs when the dead method is resurrected. The main concern when performing dynamic analysis with a granularity of a method is the overhead caused.

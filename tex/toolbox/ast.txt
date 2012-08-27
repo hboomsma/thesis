@@ -1,0 +1,37 @@
+Dynamic Dead Code Detection Tools For PHP5
+Developed by Hostnet B.V.
+http://www.hostnet.nl
+Hidde Boomsma
+hidde@hostnet.nl
+
+Usage:
+  /usr/bin/dead [options]
+  /usr/bin/dead [options] <command> [options] [args]
+
+Options:
+  -q, --quiet                       don't print status messages to stdout
+  -d dsn, --dsn=dsn                 The Data Source Name
+                                    <driver>://<username>:<password>@<host>:<port>/<database>
+                                    ex.
+                                    "mysql://user:pass@my.server.nl/database"
+  -u username, --user=username      Username for the datasource
+  -p password, --password=password  Password for the datasource
+  -t table, --table=table           the table in the database where you
+                                    want to store information or fetch it
+                                    from
+  -i, --information                 display memory and run time information
+                                    after the command has finished (on
+                                    stderr)
+  -o output, --output=output        the output file (use - for stdout)
+  -h, --help                        show this help message and exit
+  -v, --version                     show the program version and exit
+
+Commands:
+  color  generate a colors.txt file for use in eclipse
+  prime  read a directory path and store it in the database
+  tree   puts aggregated data in the database
+  stats  display some basic statistic information from the table
+  json   get json for the treemap for a specific path from a cashe tree
+         database
+  graph  create various visualizations
+

@@ -1,0 +1,113 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{enumitem}
+\usepackage{ amssymb }
+\usepackage{a4wide}
+\author{Hidde Boomsma}
+\title{Questionnaire - Dead Code Identification}
+
+\newcommand{\choice}{
+\begin{flushright}
+fully agree $\bigcirc$ \\
+agree $\bigcirc$\\
+disagree $\bigcirc$ \\
+completely disagree $\bigcirc$ \\ 
+don't know $\bigcirc$
+\end{flushright} 
+}
+
+\newcommand{\yearchoice}{
+  \begin{flushright}
+  0--1 year $\bigcirc$ \\
+  1--2 years $\bigcirc$ \\
+  2--4 years $\bigcirc$ \\
+  $>$ 4 years$\bigcirc$ \\ 
+  don't know $\bigcirc$
+  \end{flushright} 
+}
+
+\newcommand{\positionchoice}{
+  \begin{flushright}
+  junior $\bigcirc$ \\
+  medior $\bigcirc$ \\
+  senior $\bigcirc$ \\
+  team leader $\bigcirc$  \\
+  other $\bigcirc$ \\
+  don't know $\bigcirc$
+  \end{flushright} 
+}
+
+\newcommand{\workchoice}{
+  \begin{flushright}
+  projects $\square$\\
+  features $\square$\\
+  bug fixes $\square$\\
+  operational $\square$\\
+  other $\square$
+  \end{flushright} 
+}
+
+\newcommand{\yesno}{
+ \begin{flushright}
+ yes $\bigcirc$ \\
+ no $\bigcirc$ \\
+ don't know $\bigcirc$
+\end{flushright} 
+}
+
+\newcommand{\ratechoice}{\hfill very useless $\bigcirc \mid$ useless $\bigcirc \mid$ useful $\bigcirc \mid$ very useful $\bigcirc$ $\mid$ don't know $\bigcirc$\\}
+
+\begin{document}
+\maketitle
+\section{Job}
+\begin{enumerate}
+	\item How many years have you worked in the Software Engineering field?\yearchoice
+	\item Which type of work did you do in the past two months\workchoice
+	\hfill\textit{tick all that apply}
+	\item What is your position within the Hostnet Software Engineering team\positionchoice
+\end{enumerate}
+
+\newpage
+\section{Tree map visualization}
+
+\begin{enumerate}[resume]
+\item I used the tree map visualization\yesno
+\hfill\textit{if you answerd with no or don't know, you can proceed to \textbf{Eclipse plugin}}
+\item The tree map helps me to find dead code\choice
+\item I know where I am in the project structure when browsing through the directory structure\choice
+\item I use the graph in my decisions about code removal\choice
+\item I use the table when looking for dead code\choice
+\item Rate the usefulness of the following entries in the table view
+
+\textbf{path}\ratechoice
+\textbf{\% $\dagger$}\ratechoice
+\textbf{\# $\dagger$}\ratechoice
+\textbf{\# .php}\ratechoice
+\textbf{\# hits}\ratechoice
+\textbf{age}\ratechoice
+\textbf{hit time}\ratechoice
+\end{enumerate}
+
+\section{Eclipse plugin}
+\begin{enumerate}[resume]
+	\item I used the Eclipse plugin\yesno
+	\hfill\textit{if you answerd with no or don't know, you are now \textbf{finished}}
+	\item I have the dead files plug-in enabled all the time\choice
+	\item I turn the plugin only on for to purpose of removing files\choice
+	\item The plugin aids me when debugging applications\choice
+	\item The plugin aids me when developing new features\choice
+	\item A file that is red can be removed\choice
+	\newpage
+	\item A fully green folder only contains alive files\choice
+\end{enumerate}
+
+\noindent Write any remarks below:
+
+\vfill
+\begin{flushright}
+Thank you for your time
+
+\textit{Hidde Boomsma}
+\end{flushright}
+
+\end{document}

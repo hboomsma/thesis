@@ -1,0 +1,49 @@
+\chapter{Visualization\label{ch:visualization}}
+\label{sec:visualization}
+
+The data that is collected should also be visualized so the user is able to see and use it. The data is collected by the process described in chapter \ref{ch:implementation}. The data collected is stored in a relational database and can also be collected by other methods than the one described in this thesis, this way it is easy to reuse the visualizations. Figure \ref{fig:toolchain} at the end of the previous chapter shows how the visualization is decoupled from the information gathering part that stores all data in the central databases showed at the top of the figure. 
+
+which data should be availabe to the user to be able to make well informed decisions is discussed in the chapter on dead code identification(\autoref{ch:identification}). All this data is visualized in a web application because a web application is multi client and cross platform by nature. Besides the web application there also is an plug-in for the Eclipse \ide. This plug-in displays only the percentage of potential dead files and not all information the web application offers. The Eclipse plug-in is meant to make the developers aware of the possible dead code as soon as possible. Users that do not use Eclipse can always use the web application visualization.
+
+
+% Tree map
+% Eclipse
+\section{Tree map}
+\image{treemap}{An example of the tree map visualization}{fig:treemap}
+
+The web application uses a tree map \cite{johnson1991} (the red and green boxes shown in \autoref{fig:treemap}) as main visualization method besides a simple sortable table listing the percentage of unused files, the number of unused files, the total number of files and the number of inclusions for the application. The tree map shows the directory structure of the application. The visualization is build up using the directory structure already present on disk to group the files together because this way files that are closely coupled are likely to be in the same (sub) directory, for example modules or plug-ins can be viewed as a whole this way. Because it is easy to spot we have decided to display all files that have been executed green and other files red. Folders get a gradient between green and red depending on the percentage of executed files in the directory. To make it easy to spot which directories only contain executed files or do not contain any executed files these extremes have a distinct green and red color from the gradient start and stop color. The colors and and gradient used is visuble in \autoref{fig:treemap} between the tree map and the table. 
+
+By clicking the boxes in the tree map it is possible to open the clicked directory and view the contents in the same way it was viewed for the parent. This way it is possible to navigate trough the directory structure and view the distribution of dead files over the subdirectories for each directory. As navigational aid a breadcrumb path\cite{hudson2004,lida2003,rogers2003} is shown just above of the tree map. This is the path to the directory that is currently displayed. The directories in the breadcrumb path can be clicked to open them. At the end of the breadcrumb path the directory or file name of the current selected item is displayed. This is convenient to see which directory will be opened when the name is too long to be displayed in the box in the tree map. As short cut the right mouse button opens the parent directory for minimal mouse movement while navigating through the project structure. 
+
+The size of the boxes in the tree map correspondents with the number of dead files contained within the folder to point the user towards the area where the most unused files can be found, the more dead files, the bigger the box will be. A square scale is used so that big folders with many unused files will not take up all space but the difference in size is still distinct enough to be noticed.
+
+
+When more detailed information is needed it can be fount in the table on the left bottom It possible to sort the list according to each column by clicking on the header. The colors used in the table are the same as those in the tree map. The rows in the table are linked to the boxes of the tree map when hovering the box in the tree map will be highlighted and vice versa. The following columns are available:
+
+\begin{description}
+\item[\% $\dagger$] Percentage of unused files in this folder. For a file this is either 0\% or 100\% depending on the state of the file. This number is useful to be able to quickly determine if all files in a folder are not executed until now and probably can be removed.
+\item[\# $\dagger$] The number of unused files in this folder. For a file this is either 0 or 1 depending on the state of the file. The more unused files are in a directory the more sense it makes to invest time in this part of the system.
+\item[\# .php] The total number of PHP files contained in this folder. For a single file this is always 1. This column can be used to sort the table according to where to project has the most files. This is usable to get a quick overview of the dead code distribution throughout the project and finding caused of dead code like machine generated code that is never used.
+
+\item[\# hits] The number of times this file is included since the beginning of measurement. For folders the numbers of all contained files are aggregated. The number of times files in a directory are included can be used to determine the certainty of the other data displayed, if the files in a directory are only used rarely and over time new files are being included (visible in the first hit column and graph) it is probable that the files that are not used yet will be used in the future, so extra care has to be taken when removing files in such an area of the project. 
+
+\item[age] Date at which the file is last changed. For a folder the most recent date of all contained files is displayed. It is possible that files are just added to the application for a new feature that is not enabled yet. When this is the case the file will be recently changed in the \vcs. If the last changed date in this column is very near the file will probably not be dead even is it is not used yet.
+
+\item[hit time] Date at which this file is included for the first time. For a folder the most recent date of all contained files is displayed. When all files in a folder have very close first hit dates it probably is less probable that the remaining files will be accessed than when all dates are very far apart.
+
+\end{description}
+
+The graph on the bottom right shows the number of unique files used in total over time. The crosses denote the moment when a file was used for the first time. The last data point in the graph is not an actual new inclusion of a file, it is added to plot the graph until the current date (or end of measuring).
+
+These visualizations aid the software engineer when making decisions about when to remove a certain part of the software. It also helps determining where the most benefit could be reached when the goal is to remove all or some portion of the dead code.
+
+
+
+This visualization is build using using the \furl{d3js}~javascript~library. This library offers many visualization methods along with the tree map. By using this library it is possible to add other types of visualization of the same data without having to rewrite the whole visualization. The data that is needed for the tree map is provided by a small script that is using the toolbox as library. To view the intermediate format the subcommand \verb|json| of the toolbox can also be run on the command line. 
+
+The data displayed in the tree map is fetched from an hourly updated table in the central database which is build by aggregating the data in the measurement table. This is done via the \verb|tree| subcommand (see appendix \ref{sec:tree}). This command of the toolbox aggregates the number of dead files over the directory structure and stores the number of dead files contained in every directory together with the other fields described above in the description of the table columns.
+ 
+ 
+\section{Integration into Eclipse}
+To aid the developer working with the \ide, there is a plugin to use a (configurable) color scheme like the one in the tree map as colors for the files in the \furl{eclipse} environment. By default the plugin looks for the \verb|colors.txt| file in the project root directory. If it is found all the projects files matching those in the file will be coloured according to the percentage in the file. An example of such a file can be seen in appendix \ref{ch:colors.txt}. The color files for the Hostnet projects are created hourly from the database and saved on a network share accessible by all developers. This way all developers have a fresh view on which files are used in production. The update of the color file happens with the \verb|color| subcommand from the toolbox (see appendix \ref{sec:color}).
+\image[\textwidth]{zend-studio}{Eclipse with the dead files color decorator plugin loaded}{fig:eclipse}

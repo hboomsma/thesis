@@ -1,0 +1,72 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+% - What is dead code (in short)
+% - Where does it come from (in short)
+% - Why is dead code bad
+%   o maintainability / human
+%   o performance / technical
+% - Webapplication
+% - Dynamic language
+
+Dead code is source code that is not necessary for the correct execution of an application. Dead code is a result of software ageing\cite{parnas1994,godfrey2000}. Dead code is a threat for maintainability and therefore should be removed. Dead code leads to big applications. Applications with a lot of source are known to suffer from their size when it comes to maintainability and adding new features\cite{godfrey2000,huang2003,kiewkanya2005}. This can be explained because engineers need to understand an application before functionality can be added in the right place. When the programmer is not aware of the dead code, a piece of code that was written years ago and containing unknown bugs could be resurrected. When porting to new versions of used frameworks or libraries effort put in dead code is obviously wasted, therefore it would be beneficial to know which code is dead and remove it.
+
+Besides maintainability dead code has also implications on the performance and resource hunger of an application. If dead code is included in an executable it will cost more disk space and will occupy more memory. Dead instructions can lead to cache misses, lowering performance. Executing useless code also adds up to the total execution time.
+
+Removing dead code requires huge effort\cite{andreopoulos2004,jones2006} therefore a good balance between cost of removal and a perfectly clean source base should be found\cite{scanniello2011}. Making the identification and elimination process more efficient enables us to deliver cleaner code in the same time and give a higher return on investment.
+
+Many organizations in the web domain have the problem that their software grows and demands increasingly more effort to maintain, test, fetch from the \vcs and deploy. Old features often remain in the software, because their dependencies are not obvious from the software documentation.
+
+More and more applications are written for web using domain specific scripting languages such as PHP. As these applications grow more complex the need for quality assurance and software maintenance tools increases. Web applications are in constant motion and are deployed rather than distributed as is the case with regular applications, this makes them very volatile and dynamic. Many web applications make use of dynamic languages such as PHP. These languages are easy to learn and well suited for rapid development of initial ideas. 
+
+A web application differs from a conventional application in the way it is deployed and how the user interact with the application. A conventional program is installed on the users computer and ran on that hardware where a web application is deployed to the company servers and the users connect to it via the web browser. Everything in a web application is done via requests to the server. Each request is handled by a separate thread or process which is terminated or reused after an answer to the request has been send to the browser. It is important to keep the execution time of every request very short because the user will be waiting for the server. When implementing dynamic measuring this should be taken into account. Because a web application request is fairly isolated code that was wrongly removed will not crash the whole system but only show an error page to the user, then the user can push the back button, report the problem and continue working. This is different from conventional applications where all work could be lost when the application crashes. This implies that there is no very big penalty when optimistically removing code that is thought to be dead.
+
+Dead code elimination got a lot of attention regarding performance optimization, but not that much with respect to software maintenance. Techniques used usually perform static analysis to detect code that could not possible be executed. It often concerns optimizations at a compiler level. These optimizations are not applied to the source code and thus do not increase maintainability. There also exist methods to detect dead methods and functions\cite{bacon1996,srivastava1992} which could improve maintainability. Removing dead functions from a dynamic language with static analysis however is very difficult because of dynamic features like run-time source inclusion, dynamic and weak typing, "duck-typed" objects, implicit object and array creation, run-time aliasing, reflection and closures\cite{biggar2009,biggar2009draft,biggar2010,devries2007,tratt2009}.
+
+While static analysis is quite difficult, dynamic analysis is not very hard, because the dynamic nature of the language can be used to conduct measurements without altering the code in many cases. For a static language, static analysis would provide certainty, but in a dynamic environment this is no longer the case. Dynamic analysis, however, will never result in 100\% certainty, but it allows the detection of functionality that exists but is not used any more. From a maintainability perspective this is useful information because maintaining unused code is a waste of effort. Therefore we will use dynamic analysis of the applications at hand to detect dead code. There are two types of dynamic analyses possible, coverage and frequency analysis\cite{ball1999}. The first only captures if a statement, function, method or class is used at all and the second would also measure how often it is used. We have to decide which information will be useful to determine if a piece of code is dead.
+
+The examples used in this thesis are based on the work performed in the case studies at Hostnet.  Hostnet is a Dutch web hosting company with its own software engineering department responsible for the internal infrastructure which enables provisioning, offers customer relations management, the web shop, the customer portal and website. Because Hostnet uses PHP for most of its applications, PHP is used for code examples in this thesis.
+
+%The core business of Hostnet is providing web space and because a lot of people within the company had experience with web development the internal applications are written as web applications in PHP. The customer portal and web shop are obviously also web systems that use the same techniques and databases as the internal applications.
+
+
+\subsection*{Problem statement and research questions\label{sec:problem}}
+The problem of increasing maintenance cost because of the growth and ageing of the software leads to the problem statement.
+How to identify and eliminate dead code in dynamic languages in general, and PHP as such language, in particular.
+
+We identified the following research questions in this context:
+
+\begin{itemize}
+  \item 
+  \textbf{Which data from the software is necessary in         order to perform dead code identification and removal?}  
+
+  Which granularity is needed to provide useful information to the user? Do we need frequency or just coverage information? In short Which information is needed.  This fundamental question is discussed in chapter~\ref{ch:identification} on \nameref{ch:identification}.
+  
+  \item 
+	\textbf{How can we extract the necessary data from the software?}  
+  	How is it possible to obtain the required information from the web application? 
+
+	The actual implementation of the system, answering this question on how to fetch the information is presented in chapter~\ref{ch:implementation} (\nameref{ch:implementation}).
+  
+  
+  \item
+   \textbf{How should the data be presented to the software developers?} In which way should the date be shown? Should we use graphs, tables or other representations? Could the representation be integrated with the \ide the software developers use?
+  \item
+  	\textbf{What is the overhead incurred of dynamically extracting the data from the software?}
+  	The overhead of the measurement should be small enough to be unnoticed by the end-user of the systems. What is the impact of the overhead and how does it influence the system and server load. The overhead measured in the system will be evaluated in chapter~\ref{ch:evaluation} (\nameref{ch:evaluation}).
+  \item 
+  	\textbf{What is a good strategy for deciding which code to remove?}
+  How long should we wait before we assume that a piece of code will not be ran in the future and can be safely removed? This will be discussed in chapter~\ref{ch:elimination} on \nameref{ch:elimination}.
+\end{itemize}
+
+\subsection*{Contributions}
+% Method for reducing maintenance cost via dead code removal for web systems
+% Quallity assurance in scripted websystems
+% Toolset
+% Elcipse Plugin
+
+This thesis contributes not only to the body of knowledge about dead code identification and elimination from web systems programmed in dynamic languages but it shows that the proposed method is feasible for use in a business environment. This has been shown via multiple use cases for applications that are heavily in use at Hostnet. A method without to detect which classes are in use without altering the code is devised. The method can handle a constantly changing application as is often the case for web applications. 
+
+To test the method a set of tools has been developed. A plugin for the Eclipse \ide, a web application that can be used to visualize the data and a \cli toolbox that uses the same library as the web application and is capable of collecting and transforming usage data.
+
+These software packages are made open source at github\furl*{hostnetos} under the Hostnet profile.

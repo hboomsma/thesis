@@ -1,0 +1,181 @@
+% EVALUATION
+% Identification
+% - Overhead
+%   + Which overhead
+%   + How is it measured
+%   + Is it being noticed
+% - How long does it take depending on type of application and how much it is used
+%   + comperation of Hostnet applications with graphs
+%   + setup of measurement
+%   + measurement period
+%   + measurement servers
+% Elimination
+% - Web application visualization (tree map)
+%   + is the displayed data usefull
+%   + is it usefull in determining which parts to remove
+% - Eclipse plugin
+%   + does it hinder the developer in daily work
+%   + does it prevent mistakes
+%   + is it clear what the colors mean to the developers
+% Applicability (other organizations)
+% Threats to validity
+
+
+
+
+
+\chapter{Evaluation}
+\label{ch:evaluation}
+
+In this chapter we will discuss and evaluate the proposed method for dead code elimination. The evaluation is done by implementing dead code elimination at \furl{hostnet}. Hostnet is a Dutch web hosting company with its own software engineering department of about 10 engineers. The main language used at Hostnet is PHP because many people in the web hosting business are familiar with PHP and use it because it is easy to learn and adopt and facilitates rapid development.
+
+We will evaluate both the data gathering part: dead code identification and the data processing part: dead code elimination. For the identification part we are mainly interested in the overhead of doing runtime analysis and in determining how long the analysis should be performed before we an say with sufficient confidence that code is indeed dead. The overhead is measured in the code identification part that is implemented in Aurora, the biggest application (in number of files) in use within Hostnet. Because the overhead is dependent on the number of files in use in the application should be the worst case within Hostnet. We compare 6 applications developed within Hostnet to see how long it will take until we can tell if the files that are not executed can be regarded as dead files. These application are all different in the way they are used, the number of features and how often they are used.
+
+Both the visualizations and the method for dead code elimination are evaluated. The Eclipse plug-in  is installed for all team members and used by 8 of them currently working on PHP projects. This plug-in is used in the development of all applications done at the moment. The Eclipse plug-in should not hinder the engineers and should we would like to know if it helps the developers by letting them focus on files that are actually used. This is difficult to measure in numbers so we used a questionnaire to evaluate the Eclipse plug-in.
+
+The web application visualization with the tree map is only used by 3 people that really removed code form Aurora. For the evaluation of the proposed process of dead code elimination (see \autoref{ch:elimination}) we tried it on Aurora and managed to remove more then 28\% (2740 files) of the files within just a day work. The evaluation of the visualisation will focus on how the web application is used by the engineers and how they base their decisions on the displayed information (see \autoref{ch:visualization} for a description of the user interface).
+
+For the evaluation of both the visualizations a questionnaire is used. For the evaluation of the dead code elimination process as described in \autoref{ch:elimination}, the evaluation is based on the observations made while the engineers removed the files and monitoring the application to see if there would be any bugs that were caused by the deletion of files. 
+
+The chapter will end with an discussion on the applicability of the method for dead code elimination described in this thesis and the threats to validity of the findings reported in the evaluation.
+
+%Applicability
+%Overhead
+%Accuracy
+
+
+\input{overhead}
+\input{usecase}
+
+
+% Elimination
+% - Web application visualization (tree map)
+%   + is the displayed data usefull
+%   + is it usefull in determining which parts to remove
+% - Eclipse plugin
+%   + does it hinder the developer in daily work
+%   + does it prevent mistakes
+%   + is it clear what the colors mean to the developers
+
+\section{Dead code elimination}
+
+
+
+In this section the dead code elimination process using the created visualization tools is evaluated. The process and tree map visualization is used by two people for a full day to test the described process (\autoref{ch:elimination}) and remove dead parts of Aurora. The Eclipse plug-in is installed for all team members and has been used for a full month by the time of writing. Both visualizations and the process are evaluated using a questionnaire, because it is extremely difficult to measure objectively how the visualizations aids the developers eliminating dead code. The Eclipse plug-in could already reduce some of the maintenance cost of dead code without actually removing it by preventing the developers to mistakenly search for a bug or search for a functionality in a file that is not used.
+
+For the visualization containing the tree map, table an graph of used files we look at how the various components of the interface are used and if the user finds them useful. This is done in the questionnaire with the questions that can be seen in \autoref{tbl:treemap}.
+
+\begin{table}
+\begin{tabular}{p{7cm}ccccc}
+%\toprule
+\textbf{Question:} 
+& \rotatebox{90}{fully agree}
+  \rotatebox{90}{very useful}
+& \rotatebox{90}{agree}
+  \rotatebox{90}{useful}
+& \rotatebox{90}{disagree}
+  \rotatebox{90}{useless}
+& \rotatebox{90}{completely disagree}
+  \rotatebox{90}{completely useless}
+& \rotatebox{90}{do not know}
+\\
+
+\cmidrule(r){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3}\cmidrule(lr){4-4}\cmidrule(lr){5-5}\cmidrule(lr){6-6} 
+
+The tree map helps me to find dead code:                                         & 3 &   &   &   & \\
+I know where I am in the project structure when browsing the directory structure & 1 & 1 & 1 &   & \\
+I use the graph in my decisions about code removal                               & 1 & 2 &   &   & \\
+I use the table when looking for dead code                                       & 2 & 1 &   &   & \\
+Rate the usefulness of the following entries in the table                        &   &   &   &   & \\
+\hspace{2em} path                     &3& & & &\\
+\hspace{2em} percentage of dead files & &3& & &\\
+\hspace{2em} number of dead files     &1&1&1& &\\
+\hspace{2em} number of .php files     &1&1&1& &\\
+\hspace{2em} number of hits           &1&1&1& &\\
+\hspace{2em} age                      &3& & & &\\
+\hspace{2em} hit time                 &1&2& & &\\
+%\bottomrule
+\end{tabular}
+
+\caption{Questions about the tree map visualization\label{tbl:treemap}}
+\end{table}
+
+As is visible in \autoref{tbl:treemap}, the questionnaire was only taken by 3 people because it was not possible to spare more people for a day of dead code elimination. Two of them worked one full day on removing dead code from Aurora using the tree map visualization. When we look at the answers we can see that the tree map points users in the right direction to find the unused files that can be removed and that it is found helpful. The same is true for the table and the graph. When looking at the columns in the table we can see that data that is already available in the tree map is rated less useful then data that is available only in the table. Also the total number of PHP files seems of less interest than the other data. Nobody rated a part of the interface completely useless. Maybe the interface should be improved to make it more visible which project and directory is currently viewed because this was not clear to all participants. Although it is not possible to draw general conclusions from such a small data set, it is possible to say that the visualization did help the engineers to locate, select end eliminate dead code. 
+
+We managed to reduce the size of Aurora by 28\% in less then a day's work with two people. So far, no defects were found related to the  removal of that dead code.
+
+The Eclipse plug-in was also evaluated using the same questionnaire. For the Eclipse plug-in 8 people gave their opinion on how they use and like the plug-in. The participants consist of three senior developers, five junior developers. The questions and aggregated answers are in \autoref{tbl:eclipse}.
+
+
+\begin{table}
+\begin{tabular}{p{9cm}ccccc}
+%\toprule
+\textbf{Question:} 
+& \rotatebox{90}{fully agree}
+& \rotatebox{90}{agree}
+& \rotatebox{90}{disagree}
+& \rotatebox{90}{completely disagree}
+& \rotatebox{90}{do not know}
+\\
+
+\cmidrule(r){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3}\cmidrule(lr){4-4}\cmidrule(lr){5-5}\cmidrule(lr){6-6} 
+
+I have the dead files plug-in enabled all the time            & 5 & 3 &   &   & \\
+I turn the plug-in only on for the purpose of removing files  &   &   & 4 & 4 & \\
+The plug-in aids me when debugging applications               & 4 & 2 & 2 &   & \\
+The plug-in aids me when developing new features              &   & 5 & 3 &   & \\
+A file that is red can be removed                             &   & 1 & 4 & 3 & \\
+A fully green folder only contains live .php data             & 4 & 4 &   &   & \\    
+
+%\bottomrule
+\end{tabular}
+\caption{Questions about the Eclipse plug-in\label{tbl:eclipse}}
+\end{table}
+When we look at the answers (see \autoref{tbl:eclipse}), we observe that people have the plug-in turned on all the time and do not turn it off despite the fact that they were shown how that would be done. This leads to the conclusion that the plug-in does not get in the way of the developers. Next we want to know if the plug-in also aids the developers with their everyday work and if they understand what de colors mean. Most people find it especially useful when debugging, some others also when developing new features. When looking at the raw data it is possible to see that everybody found the plug-in useful for at least debugging or developing new features. The last to questions were added to test whether the participants knew what the colors precisely mean. A file that is red is not used in production, but on only that fact is not enough to justify removal. A fully green folder does indeed only contain used .php files, although it is possible that it will contain other unused resources. We can conclude that in general people do know what the colors mean and find them useful in their everyday work. I got a lot of positive feedback about the plug-in from the team at Hostnet.
+
+\section{Discussion}
+In this section the findings and short coming of the presented method for dead code identification and elimination will be discussed based on the case study results. Also applicability and threads to validity will be looked upon.
+
+The implemented method should be enhanced to be able to measure a shared code base, this will not be much trouble. To also take statically included classes into account more work research should be performed if this is possible with an PHP plugin or that modifying the source is needed.
+
+Outside PHP the method is applicable to all languages which use an auto loading mechanism to dynamically load classes and allow modification of this mechanism or an other method to list all loaded classes. This means the method is applicable for Java, but not for C and C++ programs.
+
+The overhead observed is about 8~ms on average for the fast in memory storage and about 27~ms on average when using disk storage. Overhead only appears at the end of every page, all content is already send to the client, only the connection is not closed yet because this would end the execution of the PHP script, which results in a slightly longer visible load indicator in the browser but all information will be available to the user without delay.
+
+The use cases provided useful data on how to measure an application. They also showed that how long you have to wait before you get useful data is dependent on how many actions are performed on the system and how these actions are distributed along the features and the number of features. For the web shop, customer portal and provisioning system it is not needed to wait longer than 2 month.
+
+When looking at the tested applications measured we observe that an older application usually has a higher percentage dead code within Hostnet. This also is to be expected because more code remains as a program ages. This can be seen in figure \ref{fig:all_apps} and in table: \ref{tbl:used}. This property can not just be generalized, because it depends a lot on how much effort is put in keeping the application small by the development team\cite{scanniello2011}, but within Hostnet everything is build by the same team which makes it possible to compare the applications.
+
+When removing code, searching for code referring to dead code is a tedious job, but the color decorator plug-in in Eclipse aids with this, because not only the files, but also the search results are decorated. This means that when the programmer searches for method invocations of method in a dead file all files containing those invocations will also be coloured in the search result. Automatically indicating the methods that call methods in dead files should be the next step to easy the programmers job.
+
+\subsection*{Applicability}
+% dynamic loaded files
+% administrate loaded files
+
+The discussed method for identifying dead files can be used in environments where files are dynamically loaded at run time. As long as files are only loaded when there actually used it is possible to add tracing code to the application or use language features to get a list of all used files. The method will not work in environments where files are statically loaded at run time or are compiled in to an executable.
+
+In practice this method will not work for compiled languages like C and C++ because there will be no files any more when the the application is compiled into an executable. For languages that dynamically loads files like Java does for classes 
+
+The tree map visualization and the Eclipse plug-in can be connected to any data source about dead files. For example determining which images or other resources are used in an web application can be done by parsing the web server access log files and fed into the central database. The visualization tools created will now be able to show information for images without customization.
+
+The procedure for dead code elimination is based on the fact that the analysis is dynamic. It should be equally valid for removing other resources or code with a different granularity as long as the data is dynamically gathered.
+
+The tool box created for the case studies can be reused without modification in every PHP application that uses the auto load functionality instead of statically including all files.
+
+\subsection*{Threads to validity}
+% - Application with low number of users
+% - Applications with static files
+% - Developers ... ?? difficult to foresee.
+% - Comparing applications is not possible (??)
+
+There are some important threads to validity of the results. The method will only perform well for applications which are used very much. It is not possible to get accurate data from an application only used a few times a weak by a couple of users. A second thread is that the application should not make use of static file inclusion, this would not make the data less reliable but certainly less usable because all static included files will be marked as alive. The use of already available code coverage tools could be used to circumvent this problem in situations where an overhead of several times the normal execution time is no problem.
+
+The toolbox and method are especially developed for use within Hostnet. The method has not been tested on applications outside of Hostnet.
+
+When a comparison will be made between different applications it is important to only measure those files that are maintained by the team the measurement is done for because otherwise unused features of plug-ins or a framework will pollute the statistics.
+
+Elimination of dead files sill is a humans job, this implies that somebody with better knowledge of the code will likely be more efficient in removing the dead code than somebody that is not familiar with the application at hand. This could compromise a clear view on how well this method performs and how the tools aid the developer. Somebody that knows the application well can be more accurate for some parts than is possible then when only using the data from the visualizations.
+
+The current overhead data is only valid for a MySQL database. It could be worse when using an alternative way of storage for the central database. This said, MySQL is freely available to everybody and could be used when needed.
+
+The usefulness of the visualization and the elimination of dead code is only evaluated within Hosnet with 8 developers from the software engineering department. It is not possible to draw conclusions from this data set although the results look promising.

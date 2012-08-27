@@ -1,0 +1,11 @@
+#!/bin/bash
+/usr/bin/dead -t aurora tree
+/usr/bin/dead -t my2 tree
+/usr/bin/dead -t ontrack tree
+/usr/bin/dead -t hft2 tree
+/usr/bin/dead -t hft3 tree
+/usr/bin/dead -t hft3stripped tree
+/usr/bin/dead -t mailbase tree
+/usr/bin/dead -t symhostnet2 tree
+/usr/bin/dead -t test tree
+/usr/bin/dead -t phpmyadmin tree

@@ -1,0 +1,3 @@
+#!/bin/bash
+make papers;
+grep --color "$1" papers/*.txt

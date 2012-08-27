@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="696.67444"
+   height="247.97939"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="drawing.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective3598"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3598-0"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3642"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3656"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3670"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3701"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3715"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3729"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3764"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3790"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3804"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3856"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3870"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3931"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3965"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3058"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3105"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3127"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3149"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3171"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3208"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3247"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3269"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3309"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3337"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3351"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="361.89185"
+     inkscape:cy="150.3423"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="997"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="1,0"
+       position="-71.325573,487.11719"
+       id="guide3237" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-32.325573,-242.49999)">
+    <path
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:1"
+       d="m 193.55104,242.99999 0,46.33683 -29.83229,0 0,74.4826 29.83229,0 0,46.33682 9.88477,-41.77425 9.87669,-41.83351 -9.87669,-41.77424 -9.88477,-41.77425 z"
+       id="rect3621" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="65.714287"
+       y="291.64789"
+       id="text3626"><tspan
+         sodipodi:role="line"
+         id="tspan3628"
+         x="65.714287"
+         y="291.64789" /></text>
+    <g
+       id="g3770"
+       transform="translate(-23,-11)">
+      <rect
+         ry="7.5787339"
+         y="262.47241"
+         x="55.825573"
+         height="44"
+         width="119"
+         id="rect2816-4"
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         id="text3630"
+         y="286.54953"
+         x="107.85714"
+         style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="286.54953"
+           x="107.85714"
+           id="tspan3632"
+           sodipodi:role="line">file system</tspan></text>
+      <image
+         sodipodi:absref="/home/hboomsma/Documents/Thesis/images/toolchain/inkscape_pasted_image_20111110_173030.png"
+         xlink:href="inkscape_pasted_image_20111110_173030.png"
+         width="32"
+         height="32"
+         id="image3731"
+         x="63"
+         y="269.36218" />
+    </g>
+    <g
+       id="g3776"
+       transform="translate(-23,-30.894158)">
+      <rect
+         ry="7.5787339"
+         y="347.00635"
+         x="55.825573"
+         height="44"
+         width="119"
+         id="rect2816-4-7"
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         id="text3630-5"
+         y="371.76514"
+         x="107.48605"
+         style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="371.76514"
+           x="107.48605"
+           id="tspan3632-8"
+           sodipodi:role="line">apache logs</tspan></text>
+      <image
+         sodipodi:absref="/home/hboomsma/Documents/Thesis/images/toolchain/inkscape_pasted_image_20111110_173129.png"
+         xlink:href="inkscape_pasted_image_20111110_173129.png"
+         width="32"
+         height="31.786667"
+         id="image3766"
+         x="63"
+         y="353.11301" />
+    </g>
+    <g
+       id="g3840"
+       transform="translate(294,105.75001)">
+      <g
+         id="g3770-2"
+         transform="translate(259.67443,-52.110229)">
+        <rect
+           style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect2816-4-3"
+           width="119"
+           height="44"
+           x="55.825573"
+           y="262.47241"
+           ry="7.5787339" />
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="107.85714"
+           y="280.9812"
+           id="text3630-2"><tspan
+             sodipodi:role="line"
+             id="tspan3632-7"
+             x="107.85714"
+             y="280.9812">repository</tspan><tspan
+             id="tspan3830"
+             sodipodi:role="line"
+             x="107.85714"
+             y="293.4812">inspection</tspan></text>
+      </g>
+      <image
+         sodipodi:absref="/home/hboomsma/Documents/Thesis/images/toolchain/inkscape_pasted_image_20111110_173600.png"
+         xlink:href="inkscape_pasted_image_20111110_173600.png"
+         width="32"
+         height="25.6"
+         id="image3792"
+         x="323"
+         y="219.56218" />
+    </g>
+    <g
+       id="g3902"
+       transform="translate(70.775207,-14.249993)">
+      <rect
+         ry="7.5787339"
+         y="330.36218"
+         x="346.5"
+         height="44"
+         width="119"
+         id="rect2816-4-7-0"
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <image
+         sodipodi:absref="/home/hboomsma/Documents/Thesis/images/toolchain/inkscape_pasted_image_20111110_174035.png"
+         xlink:href="inkscape_pasted_image_20111110_174035.png"
+         width="32"
+         height="32"
+         id="image3858"
+         x="355.33722"
+         y="336.36218" />
+      <text
+         id="text3630-5-4"
+         y="348.87097"
+         x="398.16049"
+         style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="348.87097"
+           x="398.16049"
+           id="tspan3632-8-3"
+           sodipodi:role="line">static</tspan><tspan
+           id="tspan3900"
+           y="361.37097"
+           x="398.16049"
+           sodipodi:role="line">analysis</tspan></text>
+    </g>
+    <g
+       id="g3902-8"
+       transform="translate(-121.44962,-14.249993)">
+      <rect
+         ry="7.5787339"
+         y="330.36218"
+         x="346.5"
+         height="44"
+         width="119"
+         id="rect2816-4-7-0-9"
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <image
+         sodipodi:absref="/home/hboomsma/Documents/Thesis/images/toolchain/inkscape_pasted_image_20111110_174035.png"
+         xlink:href="inkscape_pasted_image_20111110_174035.png"
+         width="32"
+         height="32"
+         id="image3858-8"
+         x="355.33722"
+         y="336.36218" />
+      <text
+         id="text3630-5-4-8"
+         y="343.59021"
+         x="398.16049"
+         style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           id="tspan3900-0"
+           y="343.59021"
+           x="398.16049"
+           sodipodi:role="line">locate</tspan><tspan
+           y="356.09021"
+           x="398.16049"
+           sodipodi:role="line"
+           id="tspan3998">dynamic</tspan><tspan
+           y="368.59021"
+           x="398.16049"
+           sodipodi:role="line"
+           id="tspan3996">behaviour</tspan></text>
+    </g>
+    <g
+       id="g3776-3"
+       transform="translate(-22.325573,31.355835)" />
+    <g
+       id="g3090"
+       transform="translate(-0.674427,0)">
+      <rect
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="rect2816-4-7-9"
+         width="119"
+         height="44"
+         x="55.825573"
+         y="347.00635"
+         ry="7.5787339"
+         transform="translate(-22.325573,31.355835)" />
+      <text
+         xml:space="preserve"
+         style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         x="107.48605"
+         y="365.76514"
+         id="text3630-5-41"
+         transform="translate(-22.325573,31.355835)"><tspan
+           sodipodi:role="line"
+           id="tspan3632-8-5"
+           x="107.48605"
+           y="365.76514">manual </tspan><tspan
+           id="tspan3084"
+           sodipodi:role="line"
+           x="107.48605"
+           y="378.26514">input</tspan></text>
+      <image
+         sodipodi:absref="/home/hboomsma/Documents/Thesis/images/toolchain/inkscape_pasted_image_20111110_175020.png"
+         xlink:href="inkscape_pasted_image_20111110_175020.png"
+         width="32"
+         height="32"
+         id="image3919"
+         x="40"
+         y="384.36218" />
+    </g>
+    <path
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:1"
+       d="m 385.69819,315.03407 0,12.79482 -29.83229,0 0,20.56661 29.83229,0 0,12.79482 9.88477,-11.53498 9.87669,-11.55133 -9.87669,-11.53497 -9.88477,-11.53497 z"
+       id="rect3621-3" />
+    <path
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:1"
+       d="m 577.92298,315.03407 0,12.79482 -29.83229,0 0,20.56661 29.83229,0 0,12.79482 9.88477,-11.53498 9.87669,-11.55133 -9.87669,-11.53497 -9.88477,-11.53497 z"
+       id="rect3621-3-1" />
+    <path
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:1"
+       d="m 690.07812,409.39761 -12.79482,0 0,-29.8323 -20.56661,0 0,29.8323 -12.79482,0 11.53498,9.88476 11.55133,9.87669 11.53497,-9.87669 11.53497,-9.88476 z"
+       id="rect3621-3-1-0" />
+    <g
+       id="g3090-9"
+       transform="translate(383.77521,66.539064)">
+      <rect
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="rect2816-4-7-9-7"
+         width="119"
+         height="44"
+         x="55.825573"
+         y="347.00635"
+         ry="7.5787339"
+         transform="translate(-22.325573,31.355835)" />
+      <text
+         xml:space="preserve"
+         style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         x="107.48605"
+         y="365.76514"
+         id="text3630-5-41-6"
+         transform="translate(-22.325573,31.355835)"><tspan
+           sodipodi:role="line"
+           id="tspan3632-8-5-8"
+           x="107.48605"
+           y="365.76514">manual </tspan><tspan
+           id="tspan3084-2"
+           sodipodi:role="line"
+           x="107.48605"
+           y="378.26514">review</tspan></text>
+      <image
+         sodipodi:absref="/home/hboomsma/Documents/Thesis/images/toolchain/inkscape_pasted_image_20111110_175020.png"
+         xlink:href="inkscape_pasted_image_20111110_175020.png"
+         y="384.36218"
+         x="40"
+         id="image3919-0"
+         height="32"
+         width="32" />
+    </g>
+    <path
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:1"
+       d="m 567.85214,489.97937 0,-12.79482 29.8323,0 0,-20.56661 -29.8323,0 0,-12.79482 -9.88476,11.53498 -9.87669,11.55133 9.87669,11.53497 9.88476,11.53497 z"
+       id="rect3621-3-1-9" />
+    <g
+       id="g3371"
+       transform="translate(-8.44962,1.5390637)">
+      <g
+         transform="translate(-113,113)"
+         id="g3357">
+        <rect
+           style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect2816-4-7-0-9-4"
+           width="119"
+           height="44"
+           x="346.5"
+           y="330.36218"
+           ry="7.5787339" />
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="398.16049"
+           y="349.84021"
+           id="text3630-5-4-8-6"><tspan
+             sodipodi:role="line"
+             x="398.16049"
+             y="349.84021"
+             id="tspan3900-0-2">dead code</tspan><tspan
+             id="tspan3996-9"
+             sodipodi:role="line"
+             x="398.16049"
+             y="362.34021">elimination</tspan></text>
+        <image
+           xlink:href="file:///home/hboomsma/Documents/Thesis/images/toolchain/Status-user-trash-full-icon.png"
+           width="32"
+           height="32"
+           id="image3339"
+           x="354"
+           y="336.36218" />
+      </g>
+    </g>
+    <g
+       id="g3379"
+       transform="translate(2.9675293e-6,2.5390637)">
+      <g
+         transform="translate(263,112)"
+         id="g3902-2">
+        <rect
+           style="fill:#e6e6e6;fill-rule:evenodd;stroke:#808080;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect2816-4-7-0-95"
+           width="119"
+           height="44"
+           x="346.5"
+           y="330.36218"
+           ry="7.5787339" />
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="398.16049"
+           y="348.87097"
+           id="text3630-5-4-3"><tspan
+             sodipodi:role="line"
+             id="tspan3632-8-3-9"
+             x="398.16049"
+             y="348.87097">live to dead</tspan><tspan
+             sodipodi:role="line"
+             x="398.16049"
+             y="361.37097"
+             id="tspan3900-4">conversion</tspan></text>
+      </g>
+      <image
+         y="448.36218"
+         x="618"
+         id="image3353"
+         height="32"
+         width="32"
+         xlink:href="file:///home/hboomsma/Documents/Thesis/images/toolchain/convert-color-to-gray-icon.png" />
+    </g>
+    <path
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:1"
+       d="m 375.62735,489.97937 0,-12.79482 29.8323,0 0,-20.56661 -29.8323,0 0,-12.79482 -9.88475,11.53498 -9.8767,11.55133 9.8767,11.53497 9.88475,11.53497 z"
+       id="rect3621-3-1-9-1" />
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+gives a graphical representation of how many new files are used over time
+
+Usage:
+  /usr/bin/dead [options] graph [options] saturation [options] <tables...>
+
+Options:
+  -p path, --path=path  only inspect files under this path
+  -s, --scale           Scale the graph to days and % all with all
+                        applications starting at 0 days
+  -h, --help            show this help message and exit
+
+Arguments:
+  tables  tables that should be included
+

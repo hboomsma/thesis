@@ -1,0 +1,7 @@
+#!/bin/bash
+/usr/bin/dead -t aurora color   -p /home/ontw/aurora/www   > /pool/groups/se/AURORA/colors.txt
+/usr/bin/dead -t my2 color      -p /home/ontw/my2/www      > /pool/groups/se/MYHOSTNET/colors.txt
+/usr/bin/dead -t ontrack color  -p /home/ontw/ontrack/www  > /pool/groups/se/Bestelmodule/colors.txt
+/usr/bin/dead -t hft2 color     -p /home/ontw/hft2/www     > /pool/groups/se/HFT/COLORS_HFT2/colors.txt
+/usr/bin/dead -t hft3 color     -p /home/ontw/hft3/www     > /pool/groups/se/HFT/COLORS_HFT3/colors.txt
+/usr/bin/dead -t mailbase color -p /home/ontw/mailbase/www > /pool/groups/se/MAILBASE/colors.txt

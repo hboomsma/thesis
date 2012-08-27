@@ -1,0 +1,44 @@
+\chapter{Future work}
+\label{ch:future}
+
+% Dynamic Dead Function Detection
+% Basic Static Analysis in PDT
+% Imported files
+% Comparison Static and Dynamic
+
+In this chapter extension to the research conduced for this thesis are discussed as well as new interesting research broadening the base of knowledge about software maintenance for dynamic languages.
+
+\subsection*{Dead file identification in the presence of static includes}
+As described in the HFT2 use case and in de applicability section of the evaluation the method explained in this thesis will not work in the presence of include statements instead of using an autoload mechanism. This problem is interesting to solve because it can make the method more generic applicable. Possible solutions include removing the include statements and replacing them by an autoloader algorithm. This will only work when the the class per file convention is adhered. When this convention is not used, and there is direct executable code in most of the files, dead file identification might not give any usable date for elimination of dead code any more. For which application types could this method be made suitable?
+
+\subsection*{Dynamic dead function detection}
+With this research only the first steps of dynamic dead code elimination are made, identifying and removing dead files. The logical next step is to identify dead functions. At the moment of writing it is not possible to get an aggregated list of used functions for an execution as is possible with the included files.
+
+It is possible to inject code into each function to let it notice its use. This would require a method to change the code of the system. An other solution could be to write a plugin for PHP which records all the function calls and aggregates the data. Because all function calls are looked up in a hash map\cite{biggar2009draft} it is possible to create an engine plugin and aggregate the data. A third method but discarded for this thesis is to use a profiler. The problem in using a standard profiling tool lays in the amount of data and the caused overhead. \furl{xdebug} has an feature rich profiler but adds noticeable overhead to the web application. Xdebug offers function trace capabilities but does not aggregate the data into a coverage report which results in big data sets. An other option that is a lot faster is the Zend Code Tracing which is packaged in the commercial edition of Zend Server. The problem of the amount of data still remains because the Zend Sever can also not aggregate the data. The proposed solution would be to implement a PHP plugin aggregating the data and making it available in a manner similar to the \verb|get_included_files()| function. The research would be to find out how much more dead code can be identified by adding dead code detection to the system and how much (more) overhead this would give that dead file identification.
+
+\subsection*{Basic static analysis integrated with Eclise IDE}
+Because it is better to alert the programmer as soon as possible it could be beneficial to add basic dead function detection to \pdt which adds PHP as language to the Eclipse \ide. Where the Java perspective in Eclipse already warns the user about unused private functions is this option not available for PHP. It would be good to know if it is possible to use type inference and alias analysis\cite{biggar2009draft,biggar2010} to implement this in or as plugin for \pdt. This could also be extended to the use of static functions in classes that are never used.
+
+\subsection*{Implementation of static analysis}
+For this thesis the possibility of static analysis was researched. With the \phc\cite{biggar2010} it is possible to create an \gast of a application. As as first start a listing of all classes and functions available was made. As second step all references to dead classes where listed and aggregated. Detection of reachable classes is hard in PHP because it is possible to use variable variables to create an object. It is possible to detect this behaviour. The idea was here to add comments or annotations to the constructs in the code clarifying which classes could be used by these statements to make it possible to be reasonable certain about which classes are reachable.
+
+This part poses a problem for most Hostnet applications using Symfony because a lot of classes written by the user are loaded dynamic based on user input and where the user is at the website. All those classes accessible from the user interface should be considered reachable and as a result all classes they use should be too. The proposed solution for this problem was to use dynamic data from the Apache access logs in combination with the Symfony routing system to only mark those classes as reachable which are really used. This combination of the dynamic and static data is not yet implemented in the toolset and therefore there is also no comparison possible of marking all classes reachable by user action as reachable and marking only the used ones as reachable.
+
+For classes this system is relatively easy because it is not needed to do a full alias analysis and perform type inference to see which classes are reachable. Keeping track of all class initiations, extends and static calls are enough to know which classes are reachable.
+
+For this thesis was decided to go further along the static path because the next step, static dead function identification is a really tough job and the fact that Hostnet does not only want to detect unreachable code but also unused code. Further research could include looking into the possibility of implementing static analysis on a function level and maybe take it even further to a statement level and detect redundant code. Also could be checked if it was possible to integrate this with the \dltk and \pdt in Eclipse, or that the usage of the \phc or an other solution is to be preferred.
+
+\subsection*{Comparing static and dynamic dead file identification}
+With the research done and the tools written for this thesis it is possible to investigate the difference between static and dynamic dead file identification on the number of dead classes found and the accuracy exposed of the two methods.
+
+\subsection*{Dying code detection}
+Would it be possible to use the statistical data collected for each file from this thesis to predict if a file will be dead in the future. Currently \vcs data, first use, last use, number of uses, date of addition and date of removal are recorded for each file. The created toolset can be easily extended to add more data which could maybe help predict dying files. Is the current data set rich enough to do so, should information be added and is it possible in general to do so?
+
+\subsection*{Integration with continuous integration system}
+At Hostnet all applications are integrated continuously\cite{fowler2006} using \furl{jenkins}. When new code is committed the unit tests are ran. The code coverage of these unit tests could also be aggregated added to the visualization tools giving a more complete overview. Research should be done to determine if this information influences the precision and usefulness of the visualized data.
+
+\subsection*{Dead database structure identification}
+Extend the current toolbox to be albe to visualize the table and column structure of a relational database system. Using database query log files all used tables and (excluding queries on all columns using a *) columns that are used could be recorded. This would be a good companion tool for the dead code identification tool for PHP created for this thesis because relational databases are much used in combination with PHP.
+
+\subsection*{Add functionality for code reuse}
+A lot of applications have common code. If this code is also maintained by the same people the recorded data could be saved in a separate database so all applications can share this database and it becomes possible to measure how much code is dead for a library. The current toolbox does not support this yet, but adding functionality to store a subdirectory in an other table should not be hard to implement. If no visualization enhancements are required, just modifying the \verb|append.php| should be enough.

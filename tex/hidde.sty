@@ -1,0 +1,243 @@
+\ProvidesPackage{hidde}
+
+\usepackage{wrapfig}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex,usenames,dvipsnames]{color}
+\usepackage{url}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage[nowarn,toc,sanitize=none]{glossaries}
+\usepackage{a4}
+\usepackage{times}
+\usepackage{mscthesis}
+\usepackage{lipsum} % standard filler text, only needed for demo
+%\usepackage{dingbat}
+\usepackage{textcomp}
+\usepackage{wasysym}
+\usepackage[caption=false]{subfig}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\graphicspath{{../img/}}
+\newlength{\testwd}
+
+\newtheorem*{definition}{Definition}
+
+\newcommand{\fitpic}[2]{%
+  \settowidth{\testwd}{\includegraphics{#1}}%
+  \ifthenelse{\lengthtest{\testwd>#2}}{%
+  \noindent\includegraphics[width=#2]{#1}}{%
+  \includegraphics{#1}\par}%
+}    
+
+% %% The package 'algorithm' is useful, but incompatible with memoir.
+% %% Cor-Paul Bezemer / http://homes.esat.kuleuven.be/~dvherten/esatthesis.html
+% %% suggest the following fix:
+\let\newfloat\undefined \usepackage{algorithmic} 
+\usepackage{algorithm}
+
+\newcommand{\imageshort}[5][\the\textwidth] {
+\begin{figure}%
+  \begin{center}%
+    \fitpic{#2}{#1}%
+    \caption[#3]{#3#4}%
+    \label{#5}%
+  \end{center}%
+  \end{figure}%
+}
+
+\newcommand{\posimage}[5][\the\textwidth] {
+\begin{figure}[#5]%
+  \vspace{1em}%
+  \begin{center}%
+    \fitpic{#2}{#1}%    
+    \caption{#3}%
+    \label{#4}%
+  \end{center}%
+  \end{figure}%
+}
+
+
+\newcommand{\image}[4][\the\textwidth] {
+\begin{figure}%
+  \begin{center}%
+    \fitpic{#2}{#1}%    
+    \caption{#3}%
+    \label{#4}%
+  \end{center}%
+  \end{figure}%
+}
+
+\newcommand{\topimage}[4][\the\textwidth] {
+	\posimage[#1]{#2}{#3}{#4}{t}
+}
+
+
+\newcommand{\forcetopimage}[4][\the\textwidth] {
+	\posimage[#1]{#2}{#3}{#4}{t!}
+}
+
+
+\newcommand{\bottomimage}[4][\the\textwidth] {
+	\posimage[#1]{#2}{#3}{#4}{b}
+}
+
+\newcommand{\forcebottomimage}[4][\the\textwidth] {
+	\posimage[#1]{#2}{#3}{#4}{b!}
+}
+\newcommand{\hereimage}[4][\the\textwidth] {
+	\posimage[#1]{#2}{#3}{#4}{ht}
+}
+
+
+\newcommand{\forcehereimage}[4][\the\textwidth] {
+	\posimage[#1]{#2}{#3}{#4}{H}
+}
+
+\newcommand{\pageimage}[4][\the\textwidth] {
+	\posimage[#1]{#2}{#3}{#4}{p}
+}
+\renewcommand{\lstlistingname}{Listing}
+\newcommand{\lstsvnset}[1][]{\lstset{%
+  language=sh,
+  basicstyle=\ttfamily,
+  commentstyle=\color{Cyan},%
+  stringstyle=\color{Red},%
+  breaklines=true,%
+  linewidth=80ex,%
+  showstringspaces=false,%
+  classoffset=1,%
+  morekeywords={svn,add,blame,praise,annotate,ann,cat,changelist,cl,checkout,co,cleanup,commit,ci,copy,cp,delete,del,remove,rm,diff,di,export,help,import,info,list,ls,lock,log,merge,mergeinfo,mkdir,move,mv,rename,ren,propdel,pdel,pd,propedit,pedit,pe,propget,pget,pg,proplist,plist,pl,propset,pset,ps,resolve,resolved,revert,status,stat,st,switch,sw,unlock,update,up},%
+  keywordstyle=\bfseries\color{Black},
+  classoffset=0,%
+  otherkeywords={-m,-r,--version,-v,--quiet},%
+  keywordstyle=\color{Purple},
+  backgroundcolor=\color{black},%
+  captionpos=b,%
+  frame=single,%
+  framerule=2pt,%
+  rulecolor=\color{black},%
+  #1%
+}}
+
+\newcommand{\lstxpathset}{\lstset{%
+  breaklines=true,
+  language=,
+  showstringspaces=true,
+  basicstyle=\ttfamily\footnotesize,
+  linewidth=80ex,
+  prebreak=\carriagereturn,
+}}
+
+\newcommand{\svninline}{\lstsvnset\lstinline}
+\lstnewenvironment{svnlst}[1][]{\flushleft\lstsvnset[basicstyle=\ttfamily\color{white}\footnotesize,classoffset=1,keywordstyle=\bfseries\color{White},#1]}{}
+
+\lstnewenvironment{php}{\lstphpset}{}
+\newcommand{\lstphpset}[1][]{\lstset{%
+  language=PHP,
+  linewidth=80ex,
+  showstringspaces=false,
+  backgroundcolor=,
+  captionpos=b,
+  basicstyle=\ttfamily\small\color{Green},
+  keywordstyle=[1]\color{Green},
+  identifierstyle=\color{Blue},
+  commentstyle=\itshape\color{Orange},
+  stringstyle=\color{Red},
+  otherkeywords={<?,<?php,?>}, 
+  morekeywords={class, function, new, extends, mysql_close},  
+  breaklines=true,
+  frame=[tblr],
+  framerule=.5pt,
+  rulecolor=\color{black},
+  prebreak = \ldots, %\carriagereturn,
+  #1
+}}
+\newcommand{\phpinput}[2][]{\lstphpset\lstinputlisting[#1]{#2}}
+
+\newcommand{\lstcppset}[1][]{\lstset{%
+  morekeywords=,
+  otherkeywords=,
+  language=C++,
+  linewidth=80ex,
+  showstringspaces=false,
+  backgroundcolor=,
+  captionpos=b,
+  basicstyle=\ttfamily\footnotesize,
+  commentstyle=\itshape\color{Orange},
+  stringstyle=\color{Red},
+  keywordstyle={[0]\bfseries},
+  keywordstyle={[1]\color{Green}\bfseries},
+  keywordstyle={[2]\bfseries},
+  breaklines=true,
+  frame=tblr,
+  framerule=1pt,
+  rulecolor=\color{black},
+  #1
+}}
+\newcommand{\cppinput}[2][]{\lstcppset\lstinputlisting[#1]{#2}}
+
+\newcommand{\lsttxtset}[1][]{\lstset{%
+  language=,
+  basicstyle=\ttfamily\color{black}\scriptsize,
+  identifierstyle=,
+  breaklines=true,
+  linewidth=80ex,
+  showstringspaces=false,
+  frame=tblr,
+  framerule=.5pt,
+  rulecolor=\color{black},
+  #1
+}}
+\newcommand{\txtinput}[2][]{\lsttxtset\lstinputlisting[#1]{#2}}
+
+\newcommand{\lstbashset}[1][]{\lstset{%
+  language=bash,
+  basicstyle=\ttfamily\color{black}\scriptsize,
+  identifierstyle=,
+  breaklines=true,
+  linewidth=80ex,
+  showstringspaces=false,
+  frame=tblr,
+  framerule=.5pt,
+  rulecolor=\color{black},
+  #1
+}}
+\newcommand{\bashinput}[2][]{\lstbashset\lstinputlisting[#1]{#2}}
+
+
+\newcommand{\addacronym}[3]{
+  \expandafter\newacronym{#1}{#2}{#3} %
+  \expandafter\newcommand\expandafter{\csname #1s\endcsname}{\glspl{#1}\xspace} %
+  \expandafter\newcommand\expandafter{\csname #1\endcsname}{\expandafter\gls{#1}\xspace} %
+}
+
+\newglossary{url}{urls}{urlo}{List of URLs}
+
+
+\newcounter{url}
+\newcommand{\addurl}[4][]{
+  \newglossaryentry{url:#2}{type=url,name={#3},description=\url{#4}, parent={#1}}%
+  \glsadd{url:#2}%
+}
+
+\makeatletter
+\newcommand{\furl}{\@ifstar
+  \@furlStar%
+  \@furlNoStar%
+}
+
+
+\newcommand{\@furlStar}[1]{\footnote{{\expandafter\glsdesc*{url:#1}}}}
+\newcommand{\@furlNoStar}[1]{\glsname*{url:#1}\footnote{\expandafter{\glsdesc*{url:#1}}}}
+\makeatother
+\def\@MAJOR{COMPUTER ENGINEERING}
+
+\renewcommand{\glossarymark}[1]{}
+
+\newcommand{\listofurls}{\renewcommand{\glossarypreamble}{\raggedright}\printglossary[type=url,style=altlist,nonumberlist]}
+\newcommand{\listglossary}[1][]{\renewcommand{\glossarypreamble}{#1}\printglossary[type=\acronymtype]}
+
+\bibliographystyle{plain}

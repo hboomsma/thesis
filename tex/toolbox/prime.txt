@@ -1,0 +1,11 @@
+read a directory path and store it in the database
+
+Usage:
+  /usr/bin/dead [options] prime [options] <path>
+
+Options:
+  -h, --help  show this help message and exit
+
+Arguments:
+  path  The path to read the files from for priming
+

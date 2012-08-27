@@ -1,0 +1,11 @@
+get json for the treemap for a specific path from a cashe tree database
+
+Usage:
+  /usr/bin/dead [options] json [options] <path>
+
+Options:
+  -h, --help  show this help message and exit
+
+Arguments:
+  path  path to get the json for
+

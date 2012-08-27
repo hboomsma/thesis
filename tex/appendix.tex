@@ -1,0 +1,59 @@
+\chapter{PHP dynamic measurement: append.php}
+\label{ch:append.php}
+\phpinput[frame=]{append.php}
+
+\chapter{Help for Toolbox}
+
+\begin{minipage}{\textwidth}
+\section{main command}\label{sec:main}
+\txtinput[frame=]{toolbox/dead.txt}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\section{color subcommand}\label{sec:color}
+\txtinput[frame=]{toolbox/color.txt}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\section{prime subcommand}\label{sec:prime}
+\txtinput[frame=]{toolbox/prime.txt}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\section{tree subcommand}\label{sec:tree}
+\txtinput[frame=]{toolbox/tree.txt}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\section{stats subcommand}\label{sec:stats}
+\txtinput[frame=]{toolbox/stats.txt}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\section{json subcommand}\label{sec:json}
+\txtinput[frame=]{toolbox/json.txt}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+	\section{graph saturation subcommand}\label{sec:graph}
+	\txtinput[frame=]{toolbox/graph.txt}
+\end{minipage}
+
+
+\chapter{Exlipse plugin input file: colors.txt}
+\label{ch:colors.txt}
+Example of a \verb|color.txt| input file for \furl{eclipse}. The format is very simple, every line starts with the percentage (0 -- 100) followed by the path of the file relative to the project. Every file is on a separate line. This file is created with the color subcommand (described in appendix \ref{sec:color}).
+\txtinput[frame=]{colors.txt}
+
+
+\chapter{Update scripts}
+
+To update the color files and aggregated tree tables in the database some update scripts are used. These are very simple \furl{bash} scripts which are executed by \furl{cron}. These scripts are included here because they show nicely how the toolbox is used. The \verb|update_colors| and \verb|upate_tree| script are used to update the information for the developers. The other two, \verb|update_help| and \verb|update_thesis| are solely used to update contents of this thesis. These two scripts are included only to illustrate how the toolbox can be used.
+
+\section{update\_colors cron file\label{sec:update_colors}}\nopagebreak\bashinput[frame=]{updatescripts/update_colors}
+
+\section{update\_tree cron file\label{sec:update_tree}}\nopagebreak\bashinput[frame=]{updatescripts/update_tree}
+
+\section{update\_help cron file\label{sec:update_help}}\nopagebreak\bashinput[frame=]{updatescripts/update_help}
+
+\section{update\_thesis cron file\label{sec:update_thesis}}\nopagebreak\bashinput[frame=]{updatescripts/update_thesis}

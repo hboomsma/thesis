@@ -1,0 +1,27 @@
+#!/bin/bash
+PATH="/home/hboomsma/usr/:$PATH"
+#PHP="/opt/eclipse/plugins/com.zend.php.debug.debugger.linux.x86_64_5.3.18.v20111214/resources/php53/php -c /home/hboomsma/php.ini"
+#HP="/opt/eclipse/plugins/com.zend.php.debug.debugger.linux.x86_64_5.3.18.v20120224/resources/php53/php -c /home/hboomsma/php.ini"
+PHP="php"
+INKSCAPE="inkscape"
+DIR="/home/ontw"
+#DEAD="$DIR/dead.phar"
+DEAD="$DIR/dead/toolset/loader.php"
+IMGDIR="$DIR/dead/thesis/img/usecase"
+IMGSRCDIR="$DIR/dead/thesis/imgsrc/usecase"
+TEXFILE="$DIR/dead/thesis/tex/stats.tex"
+TABLES="aurora my2 ontrack hft2 hft3 hft3stripped mailbase"
+
+#rm $TEXFILE
+
+for TABLE in $TABLES; do
+  $PHP $DEAD -o $IMGSRCDIR/$TABLE.svg -t $TABLE graph -w 800 -h 400 saturation
+  echo "$INKSCAPE -f $IMGSRCDIR/$TABLE.svg -A $IMGDIR/${TABLE}_saturation.pdf"
+  echo "$INKSCAPE -f $IMGSRCDIR/$TABLE.svg -E $IMGDIR/${TABLE}_saturation.eps"
+#  $PHP $DEAD -t $TABLE stats -f latex >> $TEXFILE
+done
+
+$PHP $DEAD -o $IMGSRCDIR/all.svg graph -w 800 -h 400 saturation -s $TABLES
+echo "$INKSCAPE -f $IMGSRCDIR/all.svg -A $IMGDIR/all.pdf"
+echo "$INKSCAPE -f $IMGSRCDIR/all.svg -E $IMGDIR/all.eps"
+

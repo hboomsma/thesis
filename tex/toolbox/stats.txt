@@ -1,0 +1,18 @@
+display some basic statistic information from the table
+
+Usage:
+  /usr/bin/dead [options] stats [options]
+
+Options:
+  -d date_format, --date_format=date_format     The format to use for the
+                                                date fields
+  -l latex_prefix, --latex_prefix=latex_prefix  A prefix for the latex
+                                                command generated
+  -u, --utc                                     display dates and times in
+                                                UTC
+  -f format, --format=format                    format to use for output
+  --list-format                                 lists valid choices for
+                                                option format
+  -h, --help                                    show this help message and
+                                                exit
+

@@ -1,0 +1,102 @@
+\documentclass[11pt,a4paper]{memoir}
+\usepackage{hidde}
+\usepackage[pdfauthor={Hidde Boomsma},%
+            pdftitle={Dead code elimination for web applications written in dynamic languages},%
+            pdftex,
+%            colorlinks=true,
+            plainpages=false,
+            pdfpagelabels
+          ] {hyperref}
+
+
+\include{stats}
+\include{glossary}
+\include{url}
+
+%---------------------------------------------------------------------%
+%                     Options                                         %
+%---------------------------------------------------------------------%
+
+\makeglossaries
+\title{Dead code elimination for \mbox{web applications} written in \mbox{dynamic languages}}
+\subtitle{Master's Thesis \\Version of \today}
+
+% The final version of your thesis should typically use a different
+% subtitle without the current date, for example\printglossaries
+%\subtitle{Master's Thesis} 
+% or remove the subtitle by uncommenting the following line: 
+%\subtitle{}
+
+\author{Hidde Boomsma} 
+\authoremail{\url{H.B.boomsma@student.tudelft.nl}}
+\birthplace{Naarden 1984, the Netherlands}
+\studentid{1174371}
+
+% Optional for work done at a company, put this in comments if you did
+% not do your thesis work at a company
+\company{
+\includegraphics[height=1.2cm]{../img/logo-hostnet}\\
+Department of Software Engineering\\
+Hostnet B.V.\\
+Amsterdam, the Netherlands\\
+\url{www.hostnet.nl}
+}
+
+% Optional (postscript) cover picture. Put this in comments when not needed.
+\coverpicture{\center\includegraphics[width=8cm]{hoster-delft}}
+
+
+% A copyright notice and maybe something about the cover picture
+% Put in comments to get the default copyright notice
+\colophon{\noindent
+  \copyright{} 2012 \theauthor. All rights reserved \\[1em] 
+  Cover picture: Hoster the Hostnet mascot
+}
+
+% thesis committee:
+\chair{Prof. Dr. A. van Deursen, Faculty EEMCS, TU Delft}
+\supervisor{Dr. Phil. H.-G. Gross, Faculty EEMCS, TU Delft}
+\committeemember{Dr. S. O. Dulman, Faculty EEMCS, TU Delft}
+
+% The following two are optional for LaTeX (current university
+% regulations state that at least one of them should be assigned)
+\externalsupervisor{Ir. S. R. Lenselink, Hostnet B.V.}
+
+\setcounter{tocdepth}{2}
+\setsecnumdepth{subsection}
+\maxsecnumdepth{subsection}
+
+\begin{document}
+	\pagenumbering{alph}
+	\thispagestyle{empty}
+	\maketitle                                      % for the cover page
+	\frontmatter
+	\makeformaltitlepages{\input{abstract}}         % for formal title pages with all info
+	
+	\include{preface}
+	\cleardoublepage\tableofcontents
+	\cleardoublepage\listoffigures
+	\cleardoublepage\mainmatter
+	
+	\include{introduction}
+	\include{identification}
+	\include{implementation}
+	\include{visualization}
+	\include{elimination}
+	\include{evaluation}
+	\include{related}
+	\include{conclusions}
+	%\include{future}
+	
+	\cleardoublepage\bibliography{literature}
+	\cleardoublepage\appendix
+	\cleardoublepage\listglossary[In this appendix we give an overview of frequently used terms and abbreviations.]
+	\cleardoublepage\listofurls
+		
+	\include{append}
+	\include{questionnairedata}
+	\include{help}
+	\include{colors}
+	\include{update}
+
+\end{document}

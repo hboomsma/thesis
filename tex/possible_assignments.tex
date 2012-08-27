@@ -1,0 +1,55 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\lstnewenvironment{php}{\lstset{language=php}}{}
+
+\newtheorem*{definition}{Definition}
+
+%opening
+\title{Possible assignment within Hostnet B.V.}
+\author{Hidde Boomsma \\ Faculty EEMCS, Delft University of Technology \\ Delft, The Netherlands}
+
+\begin{document}
+\maketitle
+
+
+\section{Data integrity check and model recovery on customer database}
+
+At Hostnet the data form the customers is saved in a MySQL RDMS cluster using MyISAM tables. These tables do not support foreign keys. Due to software faults and errors not all foreign key relations are properly stored in the database. 
+
+The goal is to develop or enhance a tool to guess the foreign keys constraints from the database and check if they are met. The guessing should be aided by date form existing (object) models from the applications using the database.
+
+Besides foreign key constraints there are also implicit constraints like it is impossible to be born in the future or end a contract before it has begun. A lot of these constraints could also be guessed but user aid is needed to not overlook many cases.
+
+A last category are the business constraints, decisions made by Hostnet about what product combinations are possible and such. Some are stable, others are a moving target. These constraints can not be guessed and should be provided to the system.
+When all data is provided it should be updated regularly and the checks should run every night so a fault in the software causing data corruption will be found early.
+
+For data integrity between cluster nodes a simple tool using checksums is already build within Hostnet.
+
+\section{Build a affordable high availability storage solution}
+Hostnet needs an affordable storage solution for the virtual private servers. Currently the storage solutions are bought in. These solutions are rather costly and Hostnet would like to have a solution that can be build out of existing cheap hardware with a software layer on top providing the necessary interfaces. The following criteria should be met:
+
+\begin{itemize}
+\item backup within one day
+\item cheap arrays of disks
+\item possibility to export block devices
+\item management interface to add, resize and remove logical volumes in the storage cluster
+\item load balance access to the storage chassis
+\item redundancy within chassis to minimize chassis failure
+\item redundancy over chassis so only whole chassis have to be replaced
+\item key features  are low cost, integrity, performance and saleability
+\end{itemize}
+
+\section{API for adding inheritable properties to objects and resolving conflicts}
+Within the object structure of the Hostnet customer management system (written in php) there are some properties that can be set on multiple levels like preauthorized debit on customer, contract and invoice level. An other example is the discount. 
+
+These properties interact with each other. Not all properties interact in the same way. Hostnet would like to be able to add such properties to all kind of entities and retrieve their computated value in the child node of the object structure.
+
+Current uses of these properties in the systems should be identified and replaced. Preferable these properties also provide a way to extract statistical data about them from dataset (persisted in a MySQL database)
+
+\section{Make the invoice system scalable over multiple servers}
+For my bsc degree I migrated the invoice system out of access to php and mysql and sice it has been  split up in more distinct components. But now the company grows the generation of invoices is taking up quite some time and we would like to speed it up. The critical path should be found and if possible made quicker or parallel. The aim is to generate invoice in about a tenth of the time we use now (several hours)
+
+\end{document}

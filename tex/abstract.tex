@@ -1,0 +1,13 @@
+\fontsize{9}{11}
+\selectfont
+Dead code is source code that is not necessary for the correct execution of an application. Dead code is a result of software ageing. It is a threat for maintainability and therefore should be removed. 
+
+Dead code can be found by collecting the set of code that is used and subtract this set from the set of all code. Collecting the set can be done statically or dynamically. Web applications are often written in dynamic languages. For dynamic languages dynamic analysis suits best and from the maintainability perspective a dynamic analysis is preferred over static analysis because it is able to detect reachable but unused code.
+
+%Via dynamic analysis all unused files are visualized in a tree map in which you can click the boxes to open them like you open directories in an ordinary file explorer. Also an Eclipse plug-in is developed to reduce the impact of existing dead code to the development process before removing it.
+
+In this thesis, we develop and evaluate techniques and tools to support software engineering with dead code identification and elimination for dynamic languages. The language used for evaluation is PHP, one of the most commonly used languages in web development. We demonstrate how and to which extent the techniques and tools proposed can support software developers at Hostnet, a Dutch web hosting organization.
+
+Many organizations in the web domain have the problem that their software grows and demands increasingly more effort to maintain, test, check out and deploy. Old features often remain in the software, because their dependencies are not obvious from the software documentation.
+
+\normalsize

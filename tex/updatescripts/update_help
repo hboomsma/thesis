@@ -1,0 +1,11 @@
+#!/bin/bash
+DEAD='/usr/bin/dead'
+COMMANDS="color prime ast tree stats json"
+
+for CMD in $COMMANDS;
+do
+  $DEAD $CMD --help > "/home/ontw/dead/thesis/tex/toolbox/$CMD.txt"
+done
+
+`$DEAD graph saturation --help > /home/ontw/dead/thesis/tex/toolbox/graph.txt`
+`$DEAD --help > /home/ontw/dead/thesis/tex/toolbox/dead.txt`
